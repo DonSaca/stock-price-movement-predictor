@@ -7,7 +7,7 @@ import seaborn as sns
 import os
 
 # ==== Load processed data ====
-df = pd.read_csv("data/AAPL_processed.csv", index_col=0)
+df = pd.read_csv("data/TSLA_processed.csv", index_col=0)
 # Convert Volume to numeric, force errors to NaN
 df["Volume"] = pd.to_numeric(df["Volume"], errors="coerce")
 

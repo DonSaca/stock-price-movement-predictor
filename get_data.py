@@ -39,14 +39,15 @@ def add_target(df):
     df["Target"] = (df["Close"].shift(-1) > df["Close"]).astype(int)
     df.dropna(inplace=True)
     return df
-
+"""
 def scale_features(df, feature_cols):
     scaler = StandardScaler()
     scaled = scaler.fit_transform(df[feature_cols])
     df_scaled = pd.DataFrame(scaled, columns=feature_cols, index=df.index)
     df.update(df_scaled)
     return df, scaler
-
+"""
+#You shouldnt be scaling the whole dataset dumbass the mean and stand
 def save_processed_data(df, ticker):
     os.makedirs(DATA_DIR, exist_ok=True)
     df.to_csv(f"{DATA_DIR}/{ticker}_processed.csv")
@@ -59,16 +60,17 @@ def run_pipeline(ticker):
     df = add_target(df)
 
     features = ["Return", "LogReturn", "MA10", "MA50", "RSI", "MACD", "Volume"]
-    df, scaler = scale_features(df, features)
+    #df, scaler = scale_features(df, features)
 
     save_processed_data(df, ticker)
 
     # Save scaler too for later use in models
-    with open(f"{DATA_DIR}/{ticker}_scaler.pkl", "wb") as f:
-        pickle.dump(scaler, f)
+   
+    #with open(f"{DATA_DIR}/{ticker}_scaler.pkl", "wb") as f:
+   #     pickle.dump(scaler, f)
 
     return df
 
 if __name__ == "__main__":
-    df = run_pipeline("AAPL")
+    df = run_pipeline("TSLA")
     print(df.tail())

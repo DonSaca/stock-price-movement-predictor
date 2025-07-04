@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 # ==== Load processed data ====
-df = pd.read_csv("data/AAPL_processed.csv", index_col=0)
+df = pd.read_csv("data/TSLA_processed.csv", index_col=0)
 
 # ==== Define feature columns ====
 features = ["Return", "LogReturn", "MA10", "MA50", "RSI", "MACD", "Volume"]
